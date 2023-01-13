@@ -101,6 +101,21 @@ app.post("/users", (req, res) => {
   users.push(userObj);
 });
 
+// put by id
+app.put("/users/:id", (req, res) => {
+  const { id } = +req.params;
+  users = users.filter((elem) => elem.id !== id);
+
+  const updatedUser = {
+    id: id,
+    name: req.body.name,
+    username: req.body.username,
+  };
+  users.push(updatedUser);
+  // console.log(users);
+  // console.log(req.body);
+});
+
 app.listen(port, () => {
   console.log(`this app is listining on port ${port}`);
 });
